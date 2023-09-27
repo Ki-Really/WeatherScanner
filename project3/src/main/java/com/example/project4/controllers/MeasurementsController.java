@@ -6,6 +6,7 @@ import com.example.project4.models.Measure;
 import com.example.project4.services.MeasuresService;
 import com.example.project4.util.MeasureErrorResponse;
 import com.example.project4.util.MeasureException;
+import com.example.project4.util.MeasureValidator;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,20 +20,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(name="/measures")
+@RequestMapping("/measures")
 public class MeasurementsController {
     private final MeasuresService measuresService;
 
     private final ModelMapper modelMapper;
+    private final MeasureValidator measureValidator;
     @Autowired
-    public MeasurementsController(MeasuresService measuresService, ModelMapper modelMapper) {
+    public MeasurementsController(MeasuresService measuresService, ModelMapper modelMapper, MeasureValidator measureValidator) {
         this.measuresService = measuresService;
         this.modelMapper = modelMapper;
+        this.measureValidator = measureValidator;
     }
 
-    @PostMapping(name="/add")
+    @PostMapping("/add")
     public ResponseEntity<HttpStatus> add(@RequestBody @Valid MeasureDTO measureDTO,
                                           BindingResult bindingResult){
+        System.out.println("111");
+        Measure measureToAdd = convertToMeasure(measureDTO);
+        measureValidator.validate(measureToAdd,bindingResult);
         if(bindingResult.hasErrors()){
             StringBuilder errorMsg = new StringBuilder();
             List<FieldError> errors = bindingResult.getFieldErrors();
@@ -40,7 +46,8 @@ public class MeasurementsController {
                 errorMsg.append(error.getField()).append("-").append(error.getDefaultMessage()).append(";");
             }
         }
-        measuresService.save(convertToMeasure(measureDTO));
+
+        measuresService.save(measureToAdd);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 

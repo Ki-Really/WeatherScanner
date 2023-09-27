@@ -33,7 +33,7 @@ public class SensorController {
     }
 
     @PostMapping("/registration")
-    public ResponseEntity<HttpStatus> registration(@RequestBody @Valid SensorDTO sensorDTO,
+    public ResponseEntity<HttpStatus> registration(@RequestBody @Valid  SensorDTO sensorDTO,
                                                    BindingResult bindingResult){
 
         Sensor sensorToAdd = convertToSensor(sensorDTO);
@@ -48,7 +48,6 @@ public class SensorController {
             }
             throw new SensorNotCreatedException(errorMsg.toString());
         }
-        System.out.println("111");
         sensorsService.save(sensorToAdd);
         return ResponseEntity.ok(HttpStatus.OK);
     }

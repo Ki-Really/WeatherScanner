@@ -6,6 +6,7 @@ public class SensorDTO {
     public SensorDTO(String name) {
         this.name = name;
     }
+    public SensorDTO(){}
 
     public String getName() {
         return name;

@@ -1,16 +1,18 @@
 package org.example.dto;
 
 public class MeasureDTO {
-    private float value;
+    private int value;
     private boolean raining;
 
     private SensorDTO sensor;
+
+    public MeasureDTO(){}
 
     public float getValue() {
         return value;
     }
 
-    public void setValue(float value) {
+    public void setValue(int value) {
         this.value = value;
     }
 

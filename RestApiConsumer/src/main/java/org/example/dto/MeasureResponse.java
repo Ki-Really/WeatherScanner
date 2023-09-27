@@ -5,6 +5,8 @@ import java.util.List;
 public class MeasureResponse {
     private List<MeasureDTO> measureList;
 
+    public MeasureResponse(){}
+
     public MeasureResponse(List<MeasureDTO> measureList) {
         this.measureList = measureList;
     }

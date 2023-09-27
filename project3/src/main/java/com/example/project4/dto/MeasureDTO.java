@@ -17,8 +17,15 @@ public class MeasureDTO {
     @NotNull
     private boolean raining;
 
+    public MeasureDTO(int value, boolean raining, SensorDTO sensor) {
+        this.value = value;
+        this.raining = raining;
+        this.sensor = sensor;
+    }
+
     @NotNull
     private SensorDTO sensor;
+    public MeasureDTO (){}
 
     public float getValue() {
         return value;

@@ -9,18 +9,18 @@ import org.hibernate.mapping.Join;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name ="measure")
+@Table(name ="Measure")
 public class Measure {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "value")
-    @NotEmpty(message="Value should not be empty!")
+    @NotNull(message="Value should not be empty!")
     private int value;
 
     @Column(name = "raining")
-    @NotEmpty(message="Raining should not be empty!")
+    @NotNull(message="Raining should not be empty!")
     private boolean raining;
 
 
