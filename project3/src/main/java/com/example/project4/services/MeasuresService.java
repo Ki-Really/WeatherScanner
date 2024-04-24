@@ -25,9 +25,6 @@ public class MeasuresService {
         return measuresRepositories.findAll();
     }
 
-    public Measure findOne(int id) {
-        return measuresRepositories.findById(id).orElse(null);
-    }
     @Transactional
     public void save(Measure measure) {
         System.out.println("222");

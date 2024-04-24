@@ -25,11 +25,8 @@ public class MeasureValidator implements Validator {
         if (measure.getSensor() == null) {
             return;
         }
-
-
         if(sensorsService.findBySensorsName(measure.getSensor().getName()).isEmpty()){
             errors.rejectValue("sensor","","There is no sensor with such name!");
         }
-
     }
 }

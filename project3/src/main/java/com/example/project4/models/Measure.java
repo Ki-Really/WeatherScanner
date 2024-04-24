@@ -1,10 +1,7 @@
 package com.example.project4.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import org.hibernate.mapping.Join;
 
 import java.time.LocalDateTime;
 
@@ -15,6 +12,7 @@ public class Measure {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(name = "value")
     @NotNull(message="Value should not be empty!")
     private int value;
@@ -22,7 +20,6 @@ public class Measure {
     @Column(name = "raining")
     @NotNull(message="Raining should not be empty!")
     private boolean raining;
-
 
     @ManyToOne
     @JoinColumn(name="sensor_name", referencedColumnName = "name")
@@ -33,7 +30,6 @@ public class Measure {
     @NotNull
     private LocalDateTime measureAddTime;
 
-
     public Measure(int value, boolean raining, Sensor sensor, LocalDateTime measureAddTime) {
         this.value = value;
         this.raining = raining;
@@ -42,7 +38,6 @@ public class Measure {
     }
 
     public Measure() {
-
     }
 
     public int getId() {

@@ -1,12 +1,7 @@
 package com.example.project4.dto;
 
-import com.example.project4.models.Sensor;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 public class MeasureDTO {
@@ -14,6 +9,7 @@ public class MeasureDTO {
     @Min(-100)
     @Max(100)
     private int value;
+
     @NotNull
     private boolean raining;
 
@@ -25,6 +21,7 @@ public class MeasureDTO {
 
     @NotNull
     private SensorDTO sensor;
+
     public MeasureDTO (){}
 
     public float getValue() {
